@@ -1,5 +1,8 @@
-import express from "express";
-import { authCallback } from "../controllers/user.controller.js";
-const AuthRoutes = express.Router();
-AuthRoutes.post("/callback", authCallback);
-export default AuthRoutes;
+import express from "express"
+
+const UserRoutes=express.Router()
+
+UserRoutes.get("/like",(req,res)=>{
+    req.auth.userId
+    res.send("user route get")
+})
