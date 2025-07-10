@@ -21,3 +21,14 @@ export const authCallback=async(req ,res)=>{
         return res.status(500).json({success:false,message:"Internal Server Error"})
     }
 }
+
+export const getAllUsers=async(req ,res)=>{
+    try {
+        const currentUserId= req.auth.currentUserId
+        const users= await UserModel.find({clerkId:{$ne:currentUserId}});
+        return res.json(users)
+    } catch (error) {
+        console.log("GetAll Users",error)
+        return res.status(500).json({success:false,message:"Internal Server Error"})
+    }
+}
